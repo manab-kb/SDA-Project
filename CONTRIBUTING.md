@@ -1,12 +1,3 @@
-# SDA-Project
-A repository maintained as a codebase for an application to be built for the course - Software Design Analysis at TCD.
-
-# Team Members
-- Colm Agnew Gallagher
-- Fiona Eguare
-- Manab Kunar Biswas
-- Yatharth Jain
-
 # Contributing to SDA Project
 Hello and welcome! We are so glad that you are interested in contributing to the SDA Project!
 We only have a couple of rules and we hope you enjoy the process :)
