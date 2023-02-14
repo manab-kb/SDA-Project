@@ -1,6 +1,10 @@
 # SDA-Project
 A repository maintained as a codebase for an application to be built for the course - Software Design Analysis at TCD.
 
+# Application Prototype (Figma)
+- Navigate [here](https://www.figma.com/file/y6XAWtWTdosIOGrHp926Vc/Measure_App_Draft?node-id=0%3A1&t=qPMlzXOy4acdJqWL-1) to find the prototype sketch for the application.
+- Navigate [here](https://www.figma.com/proto/y6XAWtWTdosIOGrHp926Vc/Measure_App_Draft?node-id=1%3A10&starting-point-node-id=1%3A10) to find the working (demo) prototype model of the application.
+
 # Team Members
 - Colm Agnew Gallagher
 - Fiona Eguare
