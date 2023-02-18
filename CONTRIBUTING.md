@@ -4,6 +4,8 @@ We only have a couple of rules and we hope you enjoy the process :)
 
 ## Contributing Rules
 1. Don't move or delete any files. Only modify them.
+2. Add all business logic files [here](https://github.com/manab-kb/SDA-Project/tree/main/app/src/main/java/com/example/measure).
+3. Add all UI files [here](https://github.com/manab-kb/SDA-Project/tree/main/app/src/main/res/layout).
 
 ## Contributing Process
 1. Fork the repository
