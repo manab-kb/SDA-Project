@@ -34,6 +34,16 @@ The tech stack that we aim to use throughout the course of this project is as fo
 We also aim to use Figma to design a basic prototype of the application and then proceed
 with the development of an MVP.
 
+## How to setup and run the app ?
+### Code Repository Setup
+- Clone this repo to your local machine (remember to switch to the *main* branch after cloning, if not set by default)
+- Open the project in Android Studio.
+- Allow all the background tasks to be completed. If not initiated, navigate to the *gradle* files and run *gradle sync*.
+- Run the app on an Android Virtual Device / an android device connected via USB with developer options enabled.
+
+### APK
+- Alternatively, navigate to the **[v1.0](https://github.com/manab-kb/SDA-Project/releases/tag/v1.0)** release, and download the APK on your android device to run the app.
+
 # Team Members
 - Colm Agnew Gallagher
 - Fiona Eguare
