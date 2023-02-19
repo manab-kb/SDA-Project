@@ -11,12 +11,6 @@ A repository maintained as a codebase for an application to be built for the cou
 ### APK
 - Alternatively, navigate to the **[v1.0](https://github.com/manab-kb/SDA-Project/releases/tag/v1.0)** release, and download the APK on your android device to run the app.
 
-## Team Members
-- Colm Agnew Gallagher
-- Fiona Eguare
-- Manab Kunar Biswas
-- Yatharth Jain
-
 ## Contributing to SDA Project
 Hello and welcome! We are so glad that you are interested in contributing to the SDA Project!
 We only have a couple of rules and we hope you enjoy the process :)
