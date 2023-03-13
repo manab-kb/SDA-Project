@@ -16,6 +16,11 @@ import androidx.appcompat.app.AppCompatDelegate
 
 class MainActivity4 : AppCompatActivity(), SensorEventListener
 {
+    private lateinit var sensorManager: SensorManager
+    private var brightness: Sensor? = null
+    private lateinit var text: TextView
+    private lateinit var text2: TextView
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)

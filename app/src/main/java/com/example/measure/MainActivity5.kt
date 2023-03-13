@@ -13,6 +13,10 @@ import android.widget.Chronometer.OnChronometerTickListener
 
 class MainActivity5 : AppCompatActivity()
 {
+    private var chronometer: Chronometer? = null
+    private var pauseOffset: Long = 0
+    private var running = false
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
