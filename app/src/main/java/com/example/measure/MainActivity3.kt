@@ -15,16 +15,6 @@ import androidx.appcompat.app.AppCompatDelegate
 
 class MainActivity3 : AppCompatActivity(), SensorEventListener
 {
-    private lateinit var sensorManager: SensorManager
-    private var AcceleroMeter: Sensor? = null
-    private var MagneticField: Sensor? = null
-    private var Gravity = FloatArray(3)
-    private var GeoMagnetic = FloatArray(3)
-
-    private val Orientation = FloatArray(3)
-    private val RotationMatrix = FloatArray(9)
-    private lateinit var image: ImageView
-
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -38,10 +28,10 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener
 
         val button = findViewById<Button>(R.id.speedometer_button)
         button.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, MainActivity7::class.java)
             val pm = packageManager
             pm.setComponentEnabledSetting(
-                ComponentName(this, MainActivity::class.java),
+                ComponentName(this, MainActivity7::class.java),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP
             )
             startActivity(intent)
