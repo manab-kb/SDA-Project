@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="brightness" type="id" />
+    <item name="light_units" type="id" />
+    <item name="light_details" type="id" />
+    <item name="inclination" type="id" />
+    <item name="degrees" type="id" />
 </resources>

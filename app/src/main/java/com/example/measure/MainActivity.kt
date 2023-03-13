@@ -20,10 +20,10 @@ class MainActivity : AppCompatActivity()
 
         val button = findViewById<Button>(R.id.speedometer_button)
         button.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, MainActivity7::class.java)
             val pm = packageManager
             pm.setComponentEnabledSetting(
-                ComponentName(this, MainActivity::class.java),
+                ComponentName(this, MainActivity7::class.java),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP
             )
             startActivity(intent)
@@ -64,10 +64,10 @@ class MainActivity : AppCompatActivity()
 
         val button5 = findViewById<Button>(R.id.dimensions_button)
         button5.setOnClickListener{
-            val intent = Intent(this, MainActivity2::class.java)
+            val intent = Intent(this, MainActivity6::class.java)
             val pm = packageManager
             pm.setComponentEnabledSetting(
-                ComponentName(this, MainActivity2::class.java),
+                ComponentName(this, MainActivity6::class.java),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP
             )
             startActivity(intent)

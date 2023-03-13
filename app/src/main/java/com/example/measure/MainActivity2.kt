@@ -35,10 +35,10 @@ class MainActivity2 : AppCompatActivity(), SensorEventListener
 
         val button = findViewById<Button>(R.id.speedometer_button)
         button.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, MainActivity7::class.java)
             val pm = packageManager
             pm.setComponentEnabledSetting(
-                ComponentName(this, MainActivity::class.java),
+                ComponentName(this, MainActivity7::class.java),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP
             )
             startActivity(intent)
