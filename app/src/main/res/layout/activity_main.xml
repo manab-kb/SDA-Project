@@ -11,6 +11,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="false"
         android:contentDescription="@string/measure_light_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -35,23 +36,38 @@
 
     <View
         android:id="@+id/navigationBar"
-        android:layout_width="412dp"
-        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="144dp"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
+        android:layout_marginBottom="-9dp"
         android:background="@drawable/shape_view"
         app:layout_constraintHorizontal_bias="1.0" />
 
     <Button
-        android:id="@+id/measure_button"
+        android:id="@+id/timer_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="277dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginBottom="2dp"
+        android:background="#0520C98C"
+        app:icon="@drawable/ic_noun_stopwatch_4194937"
+        app:iconTint="#99000000"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/measure_button"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="2dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="-20dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginBottom="22dp"
         android:background="#0520C98C"
         app:icon="@drawable/ic_noun_measure_3214569"
         app:iconTint="#99000000"
@@ -65,7 +81,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="70dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginBottom="-60dp"
+        android:layout_marginBottom="-30dp"
         android:background="#0520C98C"
         app:icon="@drawable/ic_noun_speedometer_1036273"
         app:iconTint="#99000000"
@@ -79,23 +95,9 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="190dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginBottom="-22dp"
+        android:layout_marginBottom="8dp"
         android:background="#0520C98C"
         app:icon="@drawable/ic_noun_compass_4194101"
-        app:iconTint="#99000000"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/timer_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="277dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginBottom="-28dp"
-        android:background="#0520C98C"
-        app:icon="@drawable/ic_noun_stopwatch_4194937"
         app:iconTint="#99000000"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -131,5 +133,54 @@
         android:background="#00FFFFFF"
         android:text="Light"
         android:textColor="#99000000" />
+
+    <TextView
+        android:id="@+id/distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dimensions_button"
+        android:layout_alignRight="@id/measure_button"
+        android:layout_marginTop="417dp"
+        android:layout_marginRight="40dp"
+        android:background="#00FFFFFF"
+        android:text="Distance"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_below="@id/dimensions_button"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="417dp"
+        android:layout_marginRight="35dp"
+        android:layout_toRightOf="@id/distance"
+        android:text="Speed"
+        android:textColor="@color/black" />
+
+
+    <TextView
+        android:id="@+id/direction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dimensions_button"
+        android:layout_alignRight="@id/compass_button"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="417dp"
+        android:layout_toRightOf="@id/speed"
+        android:text="Direction"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/stopwatch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dimensions_button"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="417dp"
+        android:layout_toRightOf="@id/direction"
+        android:text="Time"
+        android:textColor="@color/black" />
 
 </RelativeLayout>
