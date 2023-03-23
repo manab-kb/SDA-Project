@@ -15,6 +15,16 @@ import androidx.appcompat.app.AppCompatDelegate
 
 class MainActivity3 : AppCompatActivity(), SensorEventListener
 {
+    private lateinit var sensorManager: SensorManager
+    private var AcceleroMeter: Sensor? = null
+    private var MagneticField: Sensor? = null
+    private var Gravity = FloatArray(3)
+    private var GeoMagnetic = FloatArray(3)
+
+    private val Orientation = FloatArray(3)
+    private val RotationMatrix = FloatArray(9)
+    private lateinit var image: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)

@@ -53,10 +53,10 @@ class MainActivity : AppCompatActivity()
 
         val button4 = findViewById<Button>(R.id.inclination_button)
         button4.setOnClickListener {
-            val intent = Intent(this, MainActivity2::class.java)
+            val intent = Intent(this, MainActivity6::class.java)
             val pm = packageManager
             pm.setComponentEnabledSetting(
-                ComponentName(this, MainActivity2::class.java),
+                ComponentName(this, MainActivity6::class.java),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP
             )
             startActivity(intent)
@@ -64,10 +64,10 @@ class MainActivity : AppCompatActivity()
 
         val button5 = findViewById<Button>(R.id.dimensions_button)
         button5.setOnClickListener{
-            val intent = Intent(this, MainActivity6::class.java)
+            val intent = Intent(this, MainActivity2::class.java)
             val pm = packageManager
             pm.setComponentEnabledSetting(
-                ComponentName(this, MainActivity6::class.java),
+                ComponentName(this, MainActivity2::class.java),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP
             )
             startActivity(intent)
