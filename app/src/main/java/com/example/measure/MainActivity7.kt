@@ -44,7 +44,7 @@ class MainActivity7 : AppCompatActivity(), SensorEventListener
 
         val button3 = findViewById<Button>(R.id.measure_button)
         button3.setOnClickListener{
-            val intent = Intent(this, MainActivity2::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
