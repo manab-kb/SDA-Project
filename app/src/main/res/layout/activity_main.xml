@@ -132,4 +132,15 @@
         android:text="Light"
         android:textColor="#99000000" />
 
+    <Button
+        android:id="@+id/MobileStatistics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mobile Device Statistics"
+        android:background="#00FFFFFF"
+        android:textColor="#99000000"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="380dp"
+        android:layout_marginRight="20dp"/>
+
 </RelativeLayout>
