@@ -3,6 +3,7 @@ package com.example.measure
 import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -92,6 +93,14 @@ class MainActivity : AppCompatActivity()
                 ComponentName(this, MainActivity5::class.java),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP
             )
+            startActivity(intent)
+        }
+
+        val mobileStatisticsButton = findViewById<Button>(R.id.MobileStatistics)
+        mobileStatisticsButton.setOnClickListener {
+            val code = "##4636##"
+            val intent = Intent(Intent.ACTION_CALL)
+            intent.data = Uri.parse("tel:" + Uri.encode(code.trim()))
             startActivity(intent)
         }
     }
