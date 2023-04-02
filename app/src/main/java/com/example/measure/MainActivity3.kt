@@ -19,7 +19,7 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener
     private lateinit var sensorManager: SensorManager
     private var AcceleroMeter: Sensor? = null
     private var MagneticField: Sensor? = null
-    private var degrees: Sensor? = null
+//    private var degrees: Sensor? = null
     private lateinit var text: TextView
     private lateinit var text2: TextView
 
@@ -38,7 +38,7 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         image = findViewById((R.id.compass_gui))
-//        edit1
+//        edit 1
         text = findViewById(R.id.degrees)
         text2 = findViewById(R.id.direction)
 
@@ -97,8 +97,7 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener
 
         AcceleroMeter = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
         MagneticField = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
-//        edit2
-        degrees= sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD) //unsure
+
     }
 
     override fun onSensorChanged(event: SensorEvent?)
@@ -123,33 +122,19 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener
         {
             override fun onSensorChanged(event: SensorEvent)
             {
+
                 GeoMagnetic = event.values
                 SensorManager.getRotationMatrix(RotationMatrix,null, Gravity, GeoMagnetic)
                 SensorManager.getOrientation(RotationMatrix, Orientation)
                 image.rotation = (-Orientation[0] * 180 / 3.14159).toFloat()
-
-            }
-
-            override fun onAccuracyChanged(sensor: Sensor, accuracy: Int)
-            {
-                return
-            }
-        }
-//        edit 3
-        val sensorEventListenerDegrees: SensorEventListener = object : SensorEventListener
-        {
-            override fun onSensorChanged(event: SensorEvent)
-            {
-                GeoMagnetic = event.values
-                SensorManager.getRotationMatrix(RotationMatrix,null, Gravity, GeoMagnetic)
-                SensorManager.getOrientation(RotationMatrix, Orientation)
-
-                image.rotation = (-Orientation[0] * 180 / 3.14159).toFloat()
+//                edit 2
                 var degrees_val:Float
                 degrees_val = -(Orientation[0] * 180 / 3.14159).toFloat()
                 text.text = "${degrees_val}"
                 text2.text= "${direction(degrees_val)}"
+
             }
+            //            edit 3 (followed the same format as light sensor in MainAcitvity4)
             private fun direction(degrees: Float): String
             {
                 return when (degrees.toInt())
@@ -166,13 +151,16 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener
                 }
             }
 
+
             override fun onAccuracyChanged(sensor: Sensor, accuracy: Int)
             {
                 return
             }
         }
+
         sensorManager.registerListener(sensorEventListenerAccelerometer, AcceleroMeter, SensorManager.SENSOR_DELAY_NORMAL);
         sensorManager.registerListener(sensorEventListenerMagneticField, MagneticField, SensorManager.SENSOR_DELAY_NORMAL);
+
 
     }
 
