@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 
 class MainActivity3 : AppCompatActivity(), SensorEventListener
@@ -18,6 +19,10 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener
     private lateinit var sensorManager: SensorManager
     private var AcceleroMeter: Sensor? = null
     private var MagneticField: Sensor? = null
+    private var degrees: Sensor? = null
+    private lateinit var text: TextView
+    private lateinit var text2: TextView
+
     private var Gravity = FloatArray(3)
     private var GeoMagnetic = FloatArray(3)
 
@@ -33,6 +38,10 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         image = findViewById((R.id.compass_gui))
+//        edit1
+        text = findViewById(R.id.degrees)
+        text2 = findViewById(R.id.direction)
+
 
         setUpSensors()
 
@@ -88,6 +97,8 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener
 
         AcceleroMeter = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
         MagneticField = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
+//        edit2
+        degrees= sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD) //unsure
     }
 
     override fun onSensorChanged(event: SensorEvent?)
@@ -116,6 +127,7 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener
                 SensorManager.getRotationMatrix(RotationMatrix,null, Gravity, GeoMagnetic)
                 SensorManager.getOrientation(RotationMatrix, Orientation)
                 image.rotation = (-Orientation[0] * 180 / 3.14159).toFloat()
+
             }
 
             override fun onAccuracyChanged(sensor: Sensor, accuracy: Int)
@@ -123,7 +135,42 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener
                 return
             }
         }
+//        edit 3
+        val sensorEventListenerDegrees: SensorEventListener = object : SensorEventListener
+        {
+            override fun onSensorChanged(event: SensorEvent)
+            {
+                GeoMagnetic = event.values
+                SensorManager.getRotationMatrix(RotationMatrix,null, Gravity, GeoMagnetic)
+                SensorManager.getOrientation(RotationMatrix, Orientation)
 
+                image.rotation = (-Orientation[0] * 180 / 3.14159).toFloat()
+                var degrees_val:Float
+                degrees_val = -(Orientation[0] * 180 / 3.14159).toFloat()
+                text.text = "${degrees_val}"
+                text2.text= "${direction(degrees_val)}"
+            }
+            private fun direction(degrees: Float): String
+            {
+                return when (degrees.toInt())
+                {
+                    in 0..23 -> "N"
+                    in 24..67 -> "NE"
+                    in 68..113 -> "E"
+                    in 114..157 -> "SE"
+                    in 158..203 -> "S"
+                    in 204..247 -> "SW"
+                    in 248..293-> "W"
+                    in 294..337-> "NW"
+                    else-> "N"
+                }
+            }
+
+            override fun onAccuracyChanged(sensor: Sensor, accuracy: Int)
+            {
+                return
+            }
+        }
         sensorManager.registerListener(sensorEventListenerAccelerometer, AcceleroMeter, SensorManager.SENSOR_DELAY_NORMAL);
         sensorManager.registerListener(sensorEventListenerMagneticField, MagneticField, SensorManager.SENSOR_DELAY_NORMAL);
 
@@ -133,6 +180,7 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener
     {
 
     }
+
 
     override fun onResume()
     {

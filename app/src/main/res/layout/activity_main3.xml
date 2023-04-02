@@ -94,6 +94,47 @@
         android:id="@+id/compass_gui"
         android:layout_width="wrap_content"
         android:layout_height="700dp"
+        android:layout_marginBottom="90dp"
         app:srcCompat="@drawable/compass_ui_app" />
 
+    <TextView
+        android:id="@+id/degrees"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="90dp"
+        android:text="00"
+        android:textColor="#20C98C"
+        android:textSize="96sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
+    <TextView
+        android:id="@+id/degreeSymbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="110dp"
+        android:text="°"
+        android:textColor="#99000000"
+        android:textSize="40sp"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/direction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="110dp"
+        android:text="N"
+        android:textColor="#99000000"
+        android:textSize="40sp"
+        tools:ignore="TextContrastCheck" />
 </RelativeLayout>
