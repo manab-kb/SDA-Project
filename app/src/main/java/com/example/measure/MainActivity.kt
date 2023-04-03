@@ -104,4 +104,10 @@ class MainActivity : AppCompatActivity()
             startActivity(intent)
         }
     }
+    //Back button for mobile device statistics
+    override fun onBackPressed() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
+    }
 }
