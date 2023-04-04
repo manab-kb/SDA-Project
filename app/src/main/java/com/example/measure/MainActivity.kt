@@ -3,6 +3,7 @@ package com.example.measure
 import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -94,5 +95,19 @@ class MainActivity : AppCompatActivity()
             )
             startActivity(intent)
         }
+
+        val mobileStatisticsButton = findViewById<Button>(R.id.MobileStatistics)
+        mobileStatisticsButton.setOnClickListener {
+            val code = "##4636##"
+            val intent = Intent(Intent.ACTION_CALL)
+            intent.data = Uri.parse("tel:" + Uri.encode(code.trim()))
+            startActivity(intent)
+        }
+    }
+    //Back button for mobile device statistics
+    override fun onBackPressed() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
     }
 }
