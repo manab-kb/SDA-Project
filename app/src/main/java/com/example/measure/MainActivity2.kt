@@ -13,25 +13,23 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 
+class MainActivity2 : AppCompatActivity(), SensorEventListener {
 
-class MainActivity2 : AppCompatActivity(), SensorEventListener
-{
     private lateinit var sensorManager: SensorManager
     private var dimensionlength: Sensor? = null
     private lateinit var text: TextView
-    public var time_1: Long = 0
-    public var time_2: Long = 0
+    private var distance: Float = 0f
+    private var velocity: Float = 0f
+    private var timeStart: Long = 0
+    private var timeEnd: Long = 0
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         text = findViewById(R.id.length)
-
-        setUpSensors()
 
         val button = findViewById<Button>(R.id.speedometer_button)
         button.setOnClickListener{
@@ -66,18 +64,8 @@ class MainActivity2 : AppCompatActivity(), SensorEventListener
             startActivity(intent)
         }
 
-        val button4 = findViewById<Button>(R.id.Start_Button)
+        val button4 = findViewById<Button>(R.id.timer_button)
         button4.setOnClickListener{
-            time_1 = System.currentTimeMillis()
-        }
-
-        val button5 = findViewById<Button>(R.id.Pause_Button)
-        button5.setOnClickListener{
-            time_2 = System.currentTimeMillis()
-        }
-
-        val button7 = findViewById<Button>(R.id.timer_button)
-        button7.setOnClickListener{
             val intent = Intent(this, MainActivity5::class.java)
             val pm = packageManager
             pm.setComponentEnabledSetting(
@@ -87,41 +75,60 @@ class MainActivity2 : AppCompatActivity(), SensorEventListener
             startActivity(intent)
         }
 
+        setUpSensors()
+
+        val startButton = findViewById<Button>(R.id.Start_Button)
+        startButton.setOnClickListener {
+            timeStart = System.currentTimeMillis()
+            distance = 0f
+            velocity = 0f
+            text.text = distance.toString()
+        }
+
+        val pauseButton = findViewById<Button>(R.id.Pause_Button)
+        pauseButton.setOnClickListener {
+            timeEnd = System.currentTimeMillis()
+            calculateDistance()
+        }
     }
 
-    private fun setUpSensors()
-    {
+    private fun setUpSensors() {
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         dimensionlength = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION)
     }
 
-    override fun onSensorChanged(event: SensorEvent?)
-    {
-        if (event?.sensor?.type == Sensor.TYPE_LINEAR_ACCELERATION)
-        {
-            val lengths = event.values
-            val velocityx = event.values[0]
-            val distancex = (velocityx * velocityx) / (2 * event.values[0]).toInt()
-
-            text.text = "$distancex"
+    override fun onSensorChanged(event: SensorEvent?) {
+        if (event?.sensor?.type == Sensor.TYPE_LINEAR_ACCELERATION) {
+            val acceleration = event.values[0]
+            val timeDelta = (event.timestamp - timeStart) * (1.0f / 1000000000.0f)
+            velocity += acceleration * timeDelta
+            distance += velocity * timeDelta
+            text.text = distance.toString()
         }
     }
 
-    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int)
-    {
-        return
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+        // Not used currently
     }
 
-    override fun onResume()
-    {
+    override fun onResume() {
         super.onResume()
-        sensorManager.registerListener(this, dimensionlength, SensorManager.SENSOR_DELAY_NORMAL)
+        sensorManager.registerListener(
+            this,
+            dimensionlength,
+            SensorManager.SENSOR_DELAY_NORMAL
+        )
     }
 
-
-    override fun onPause()
-    {
+    override fun onPause() {
         super.onPause()
         sensorManager.unregisterListener(this)
+    }
+
+    private fun calculateDistance() {
+        val timeDelta = (timeEnd - timeStart) / 1000f
+        val averageVelocity = distance / timeDelta
+        val calculatedDistance = 0.5f * averageVelocity * timeDelta
+        text.text = calculatedDistance.toString()
     }
 }
