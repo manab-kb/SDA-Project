@@ -123,7 +123,7 @@ class MainActivity10 : AppCompatActivity()
         audioRecord.stop()
     }
 
-    fun onStart(v: View?) {
+    fun startButton(v: View?) {
         super.onStart()
         if (permissionToRecordAccepted) {
             // Start recording audio
