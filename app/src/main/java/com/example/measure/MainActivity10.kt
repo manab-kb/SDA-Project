@@ -1,9 +1,15 @@
+package com.example.measure
+
+import android.app.Activity
+
+
 import android.Manifest
 import android.content.pm.PackageManager
 import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -13,7 +19,8 @@ import androidx.core.content.ContextCompat
 import com.example.measure.R
 
 
-class MainActivity10 : AppCompatActivity() {
+class MainActivity10 : AppCompatActivity()
+{
     private val REQUEST_RECORD_AUDIO_PERMISSION = 200
     private var permissionToRecordAccepted = false
     private var permissions: Array<String> = arrayOf(android.Manifest.permission.RECORD_AUDIO)
@@ -22,12 +29,11 @@ class MainActivity10 : AppCompatActivity() {
     private lateinit var thread: Thread
     private var isRecording: Boolean = false
     private lateinit var dbTextView: TextView
-    private lateinit var text2: TextView
+    //private lateinit var text2: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main10)
-
         // Check if the RECORD_AUDIO permission has been granted
         permissionToRecordAccepted = ContextCompat.checkSelfPermission(this, android.Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
         if (!permissionToRecordAccepted) {
@@ -54,6 +60,7 @@ class MainActivity10 : AppCompatActivity() {
         stopButton.setOnClickListener {
             isRecording = false
         }
+        dbTextView = findViewById(R.id.brightness)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
@@ -116,8 +123,7 @@ class MainActivity10 : AppCompatActivity() {
         audioRecord.stop()
     }
 
-
-    override fun onStart() {
+    fun onStart(v: View?) {
         super.onStart()
         if (permissionToRecordAccepted) {
             // Start recording audio
@@ -125,7 +131,7 @@ class MainActivity10 : AppCompatActivity() {
         }
     }
 
-    override fun onStop() {
+    fun stopButton(v: View?) {
         super.onStop()
         if (permissionToRecordAccepted) {
             // Stop recording audio
@@ -133,9 +139,6 @@ class MainActivity10 : AppCompatActivity() {
             audioRecord.release()
         }
     }
-
-
-
 
     companion object {
         const val SAMPLE_RATE = 44100

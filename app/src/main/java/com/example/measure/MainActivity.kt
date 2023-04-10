@@ -103,6 +103,17 @@ class MainActivity : AppCompatActivity()
             intent.data = Uri.parse("tel:" + Uri.encode(code.trim()))
             startActivity(intent)
         }
+
+        val soundbutton = findViewById<Button>(R.id.sound_button)
+        soundbutton.setOnClickListener{
+            val intent = Intent(this, MainActivity10::class.java)
+            val pm = packageManager
+            pm.setComponentEnabledSetting(
+                ComponentName(this, MainActivity10::class.java),
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP
+            )
+            startActivity(intent)
+        }
     }
     //Back button for mobile device statistics
     override fun onBackPressed() {
