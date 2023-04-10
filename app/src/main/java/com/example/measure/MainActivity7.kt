@@ -13,14 +13,14 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import kotlin.math.sqrt
 
-class MainActivity7 : AppCompatActivity(), SensorEventListener
-{
-    private lateinit var sensorManager: SensorManager
-    private var speed: Sensor? = null
-    private lateinit var text: TextView
+class MainActivity7 : AppCompatActivity(), SensorEventListener {
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    private lateinit var sensorManager: SensorManager
+    private lateinit var text: TextView
+    private var speed: Sensor? = null
+    private var unit: String = "m/s"
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main7)
 
@@ -53,39 +53,46 @@ class MainActivity7 : AppCompatActivity(), SensorEventListener
             val intent = Intent(this, MainActivity5::class.java)
             startActivity(intent)
         }
-    }
 
-    private fun setUpSensors()
-    {
-        sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
-
-        speed = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
-    }
-
-    override fun onSensorChanged(event: SensorEvent?)
-    {
-        if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER)
-        {
-            val acceleration = (sqrt((event.values[0]*event.values[0]) + (event.values[1]*event.values[1]) + (event.values[2]*event.values[2]))/10).toInt()
-
-            text.text = "$acceleration"
+        val switchButton = findViewById<Button>(R.id.switch_button)
+        switchButton.setOnClickListener{
+            if (unit == "m/s") {
+                unit = "km/h"
+            } else {
+                unit = "m/s"
+            }
         }
     }
 
-    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int)
-    {
-        return
+    private fun setUpSensors() {
+        sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
+        speed = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
     }
 
-    override fun onResume()
-    {
+    override fun onSensorChanged(event: SensorEvent?) {
+        if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
+            val acceleration = (sqrt((event.values[0]*event.values[0]) + (event.values[1]*event.values[1]) + (event.values[2]*event.values[2]))/10).toInt()
+            val speed = if (unit == "m/s") {
+                acceleration
+            } else {
+                (acceleration * 3.6).toInt()
+            }
+            text.text = "$speed $unit"
+        }
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+        // Do nothing
+    }
+
+    override fun onResume() {
         super.onResume()
-        // Register a listener for the sensor.
-        sensorManager.registerListener(this, speed, SensorManager.SENSOR_DELAY_UI)
+        if (speed != null) {
+            sensorManager.registerListener(this, speed, SensorManager.SENSOR_DELAY_UI)
+        }
     }
 
-    override fun onPause()
-    {
+    override fun onPause() {
         super.onPause()
         sensorManager.unregisterListener(this)
     }
