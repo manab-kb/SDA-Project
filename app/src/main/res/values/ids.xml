@@ -5,4 +5,5 @@
     <item name="light_details" type="id" />
     <item name="inclination" type="id" />
     <item name="degrees" type="id" />
+    <item name="switch_button" type="id" />
 </resources>
