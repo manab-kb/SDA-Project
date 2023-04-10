@@ -7,11 +7,11 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 
 class MainActivity3 : AppCompatActivity(), SensorEventListener
@@ -100,87 +100,61 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener
 
     }
 
-    override fun onSensorChanged(event: SensorEvent?)
-    {
-        val sensorEventListenerAccelerometer: SensorEventListener = object : SensorEventListener
-        {
-            override fun onSensorChanged(event: SensorEvent)
-            {
-                Gravity = event.values
-                SensorManager.getRotationMatrix(RotationMatrix,null, Gravity, GeoMagnetic)
-                SensorManager.getOrientation(RotationMatrix, Orientation)
-                image.rotation = (-Orientation[0] * 180 / 3.14159).toFloat()
-            }
 
-            override fun onAccuracyChanged(sensor: Sensor, accuracy: Int)
-            {
-                return
-            }
+    override fun onSensorChanged(event: SensorEvent?) {
+        if (event?.sensor?.type == Sensor.TYPE_MAGNETIC_FIELD) {
+            GeoMagnetic = event.values;
+
         }
-
-        val sensorEventListenerMagneticField: SensorEventListener = object : SensorEventListener
-        {
-            override fun onSensorChanged(event: SensorEvent)
-            {
-
-                GeoMagnetic = event.values
-                SensorManager.getRotationMatrix(RotationMatrix,null, Gravity, GeoMagnetic)
-                SensorManager.getOrientation(RotationMatrix, Orientation)
-                image.rotation = (-Orientation[0] * 180 / 3.14159).toFloat()
-//                edit 2
-                var degrees_val:Float
-                degrees_val = -(Orientation[0] * 180 / 3.14159).toFloat()
-                text.text = "${degrees_val}"
-                text2.text= "${direction(degrees_val)}"
-
-            }
-            //            edit 3 (followed the same format as light sensor in MainAcitvity4)
-            private fun direction(degrees: Float): String
-            {
-                return when (degrees.toInt())
-                {
-                    in 0..23 -> "N"
-                    in 24..67 -> "NE"
-                    in 68..113 -> "E"
-                    in 114..157 -> "SE"
-                    in 158..203 -> "S"
-                    in 204..247 -> "SW"
-                    in 248..293-> "W"
-                    in 294..337-> "NW"
-                    else-> "N"
-                }
-            }
-
-
-            override fun onAccuracyChanged(sensor: Sensor, accuracy: Int)
-            {
-                return
-            }
+        if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
+            Gravity = event.values;
         }
+        SensorManager.getRotationMatrix(RotationMatrix, null, Gravity, GeoMagnetic)
+        SensorManager.getOrientation(RotationMatrix, Orientation)
+        image.rotation = (-Orientation[0] * 180 / 3.14159).toFloat()
 
-        sensorManager.registerListener(sensorEventListenerAccelerometer, AcceleroMeter, SensorManager.SENSOR_DELAY_NORMAL);
-        sensorManager.registerListener(sensorEventListenerMagneticField, MagneticField, SensorManager.SENSOR_DELAY_NORMAL);
-
-
+        var degrees_val: Float
+        degrees_val = -(Orientation[0] * 180 / 3.14159).toFloat()
+        text.text = "${degrees_val}"
+        text2.text = "${direction(degrees_val)}"
     }
 
-    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int)
+    //            edit 3 (followed the same format as light sensor in MainAcitvity4)
+    private fun direction(degrees: Float): String
     {
-
+        return when (degrees.toInt())
+        {
+            in 0..23 -> "N"
+            in 24..67 -> "NE"
+            in 68..113 -> "E"
+            in 114..157 -> "SE"
+            in 158..203 -> "S"
+            in 204..247 -> "SW"
+            in 248..293-> "W"
+            in 294..337-> "NW"
+            else-> "N"
+        }
     }
 
+    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int)
+    {
+        return
+    }
 
     override fun onResume()
     {
         super.onResume()
-        sensorManager.registerListener(this, AcceleroMeter, SensorManager.SENSOR_DELAY_NORMAL)
         sensorManager.registerListener(this, MagneticField, SensorManager.SENSOR_DELAY_NORMAL)
+        sensorManager.registerListener(this, AcceleroMeter, SensorManager.SENSOR_DELAY_NORMAL)
     }
-
     override fun onPause()
     {
         super.onPause()
-        sensorManager.unregisterListener(this, AcceleroMeter)
         sensorManager.unregisterListener(this, MagneticField)
+        sensorManager.unregisterListener(this, AcceleroMeter)
+
     }
 }
+
+
+
