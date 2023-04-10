@@ -7,6 +7,13 @@
     android:layout_alignParentLeft="false"
     tools:context=".MainActivity4">
 
+    <ImageView
+        android:id="@+id/compass_gui"
+        android:layout_width="wrap_content"
+        android:layout_height="700dp"
+        android:layout_marginBottom="90dp"
+        app:srcCompat="@drawable/compass_ui_app" />
+
     <TextView
         android:id="@+id/menu_name"
         android:layout_width="wrap_content"
@@ -90,13 +97,6 @@
         app:iconTint="#99000000"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <ImageView
-        android:id="@+id/compass_gui"
-        android:layout_width="wrap_content"
-        android:layout_height="700dp"
-        android:layout_marginBottom="90dp"
-        app:srcCompat="@drawable/compass_ui_app" />
-
     <TextView
         android:id="@+id/degrees"
         android:layout_width="wrap_content"
@@ -137,4 +137,5 @@
         android:textColor="#99000000"
         android:textSize="40sp"
         tools:ignore="TextContrastCheck" />
+
 </RelativeLayout>

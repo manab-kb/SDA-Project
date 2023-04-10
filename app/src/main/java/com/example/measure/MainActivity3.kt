@@ -19,7 +19,7 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener
     private lateinit var sensorManager: SensorManager
     private var AcceleroMeter: Sensor? = null
     private var MagneticField: Sensor? = null
-//    private var degrees: Sensor? = null
+    //private var degrees: Sensor? = null
     private lateinit var text: TextView
     private lateinit var text2: TextView
 
@@ -38,7 +38,7 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         image = findViewById((R.id.compass_gui))
-//        edit 1
+//      edit 1
         text = findViewById(R.id.degrees)
         text2 = findViewById(R.id.direction)
 
@@ -127,11 +127,10 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener
                 SensorManager.getRotationMatrix(RotationMatrix,null, Gravity, GeoMagnetic)
                 SensorManager.getOrientation(RotationMatrix, Orientation)
                 image.rotation = (-Orientation[0] * 180 / 3.14159).toFloat()
-//                edit 2
-                var degrees_val:Float
-                degrees_val = -(Orientation[0] * 180 / 3.14159).toFloat()
+//              edit 2
+                val degrees_val = -(Orientation[0] * 180 / 3.14159).toInt()
                 text.text = "${degrees_val}"
-                text2.text= "${direction(degrees_val)}"
+                text2.text= "${direction(degrees_val.toFloat())}"
 
             }
             //            edit 3 (followed the same format as light sensor in MainAcitvity4)

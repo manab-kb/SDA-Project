@@ -55,7 +55,7 @@ class MainActivity7 : AppCompatActivity(), SensorEventListener {
         }
 
         val switchButton = findViewById<Button>(R.id.switch1)
-        switchButton.setOnClickListener {
+        switchButton.setOnClickListener{
             if (unit == "m/s") {
                 unit = "km/h"
             } else {
@@ -71,8 +71,7 @@ class MainActivity7 : AppCompatActivity(), SensorEventListener {
 
     override fun onSensorChanged(event: SensorEvent?) {
         if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
-            val acceleration =
-                (sqrt((event.values[0] * event.values[0]) + (event.values[1] * event.values[1]) + (event.values[2] * event.values[2])) / 10).toInt()
+            val acceleration = (sqrt((event.values[0]*event.values[0]) + (event.values[1]*event.values[1]) + (event.values[2]*event.values[2]))/10).toInt()
             val speed = if (unit == "m/s") {
                 acceleration
             } else {

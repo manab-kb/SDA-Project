@@ -12,5 +12,12 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="units" />
+    <string name="units">Units</string>
+    <string name="zero">00</string>
+    <string name="FaintNoise">Faint Noise</string>
+    <string name="ModNoise">Moderate Noise</string>
+    <string name="LoudNoise">Loud Noise</string>
+    <string name="VLoudNoise">Very Loud Noise</string>
+    <string name="DeafNoise">Deafening Noise</string>
+    <string name="NN">No Noise</string>
 </resources>
