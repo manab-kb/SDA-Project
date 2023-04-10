@@ -137,4 +137,5 @@
         android:textColor="#99000000"
         android:textSize="40sp"
         tools:ignore="TextContrastCheck" />
+
 </RelativeLayout>

@@ -9,7 +9,7 @@ A repository maintained as a codebase for an application to be built for the cou
 - Run the app on an Android Virtual Device / an android device connected via USB with developer options enabled.
 
 ### APK
-- Alternatively, navigate to the **[v1.0](https://github.com/manab-kb/SDA-Project/releases/tag/v1.0)** release, and download the APK on your android device to run the app.
+- Alternatively, navigate to the **[v2.0](https://github.com/manab-kb/SDA-Project/releases/tag/v2.0)** release, and download the APK on your android device to run the app.
 
 ## Contributing to SDA Project
 Hello and welcome! We are so glad that you are interested in contributing to the SDA Project!

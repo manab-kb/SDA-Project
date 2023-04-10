@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (Build.BRAND == "samsung") {
-//        WORKS FOR SAMSUNG PHONES ONLY - BLOCKED BY OTHER ANDROID SKINS / CONNECTION PROVIDERS
+        // WORKS FOR SAMSUNG PHONES ONLY - BLOCKED BY OTHER ANDROID SKINS / CONNECTION PROVIDERS
             val mobileStatisticsButton = findViewById<Button>(R.id.MobileStatistics)
             mobileStatisticsButton.setOnClickListener {
                 val code = "*#0*#"
@@ -173,7 +173,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
+    
+    //Back button for mobile device statistics
     override fun onBackPressed() {
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
