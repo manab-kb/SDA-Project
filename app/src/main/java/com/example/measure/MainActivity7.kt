@@ -31,31 +31,31 @@ class MainActivity7 : AppCompatActivity(), SensorEventListener {
         setUpSensors()
 
         val button = findViewById<Button>(R.id.speedometer_button)
-        button.setOnClickListener{
+        button.setOnClickListener {
             val intent = Intent(this, MainActivity7::class.java)
             startActivity(intent)
         }
 
         val button2 = findViewById<Button>(R.id.compass_button)
-        button2.setOnClickListener{
+        button2.setOnClickListener {
             val intent = Intent(this, MainActivity3::class.java)
             startActivity(intent)
         }
 
         val button3 = findViewById<Button>(R.id.measure_button)
-        button3.setOnClickListener{
+        button3.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
         val button7 = findViewById<Button>(R.id.timer_button)
-        button7.setOnClickListener{
+        button7.setOnClickListener {
             val intent = Intent(this, MainActivity5::class.java)
             startActivity(intent)
         }
 
-        val switchButton = findViewById<Button>(R.id.switch_button)
-        switchButton.setOnClickListener{
+        val switchButton = findViewById<Button>(R.id.switch1)
+        switchButton.setOnClickListener {
             if (unit == "m/s") {
                 unit = "km/h"
             } else {
@@ -71,7 +71,8 @@ class MainActivity7 : AppCompatActivity(), SensorEventListener {
 
     override fun onSensorChanged(event: SensorEvent?) {
         if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
-            val acceleration = (sqrt((event.values[0]*event.values[0]) + (event.values[1]*event.values[1]) + (event.values[2]*event.values[2]))/10).toInt()
+            val acceleration =
+                (sqrt((event.values[0] * event.values[0]) + (event.values[1] * event.values[1]) + (event.values[2] * event.values[2])) / 10).toInt()
             val speed = if (unit == "m/s") {
                 acceleration
             } else {

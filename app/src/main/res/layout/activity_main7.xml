@@ -32,33 +32,33 @@
 
     <TextView
         android:id="@+id/speed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="368dp"
+        android:layout_height="83dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="281dp"
-        android:layout_marginBottom="144dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="128dp"
         android:text="00"
         android:textColor="#20C98C"
-        android:textSize="96sp"
+        android:textSize="70sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TextContrastCheck" />
 
-    <TextView
-        android:id="@+id/speed_units"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="161dp"
-        android:layout_marginBottom="114dp"
-        android:text="km/hr"
-        android:textColor="#99000000"
-        android:textSize="40sp"
-        tools:ignore="TextContrastCheck" />
+    <!--    <TextView-->
+    <!--        android:id="@+id/speed_units"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_alignParentEnd="true"-->
+    <!--        android:layout_alignParentBottom="true"-->
+    <!--        android:layout_marginStart="40dp"-->
+    <!--        android:layout_marginEnd="161dp"-->
+    <!--        android:layout_marginBottom="114dp"-->
+    <!--        android:text="km/hr"-->
+    <!--        android:textColor="#99000000"-->
+    <!--        android:textSize="40sp"-->
+    <!--        tools:ignore="TextContrastCheck" />-->
 
     <View
         android:id="@+id/navigationBar"
@@ -126,5 +126,15 @@
         app:icon="@drawable/ic_noun_stopwatch_4194937"
         app:iconTint="#99000000"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="146dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginBottom="200dp"
+        android:text="@string/units"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 </RelativeLayout>
